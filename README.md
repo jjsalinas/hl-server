@@ -1,6 +1,13 @@
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+![Steam](https://img.shields.io/badge/steam-%23000000.svg?style=for-the-badge&logo=steam&logoColor=white)
+
 [![GitHub Actions Docker Image CI](https://github.com/jjsalinas/hl-server/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/jjsalinas/hl-server/actions)
+[![Docker](https://img.shields.io/badge/DockerHub-latest-green)](https://hub.docker.com/r/josejsalinas/hl-server)
+
 
 ![banner](banner.png)
+
 
 # HLDS Docker dproto(47/48 Steam+noSteam) - Crossfire 24/7
 
