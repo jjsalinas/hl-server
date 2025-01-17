@@ -20,12 +20,11 @@ This project is a fork of: [artkirienko/hlds-docker-dproto](https://github.com/a
 
 #### Docker Hub Image
 
-The latest image of this repo is available in docker hub. As pushing to main builds and publish the new image:
-[josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server)
-
+The latest image of this repo is available in docker hub [josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server) 🐋
+ 
 ```bash
-# To quickly run this image
-docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp jjsalinas/hl-server +map crossfire +maxplayers 12
+# To quickly run the image
+docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp josejsalinas/hl-server +map crossfire +maxplayers 12
 ```
 
 #### Locally
@@ -88,5 +87,6 @@ to `valve/config/server.cfg` of this project and mount the directory as volume
 to `/opt/steam/hlds/valve/config` by running:
 
 ```bash
-docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config hl-server
+# Using docker hub image
+docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config josejsalinas/hl-server
 ```
