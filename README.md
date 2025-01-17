@@ -1,4 +1,4 @@
-[![GitHub Actions Docker Image CI](https://github.com/jjsalinas/hlds-server/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/jjsalinas/hl-server/actions)
+[![GitHub Actions Docker Image CI](https://github.com/jjsalinas/hl-server/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/jjsalinas/hl-server/actions)
 
 ![banner](banner.png)
 
@@ -12,26 +12,41 @@ Both Steam and noSteam, old and new half-life clients can connect and play toget
 You don't need to know anything about Linux or HLDS to start a server. You just need Docker and
 this image.
 
+## Repository
+
+This project is a fork of: [artkirienko/hlds-docker-dproto](https://github.com/artkirienko/hlds-docker-dproto)
+
 ## Quick Start
 
-Build the image `hlds`:
+Build the image `hl-server`:
 
 ```bash
-docker build -t hlds .
+docker build -t hl-server .
 ```
 
 Run your image 
 ```bash
-docker run -it --rm -d --name hlds -p27015:27015 -p27015:27015/udp 
+docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp 
 ```
 
 You can add extra parameters when starting the image
 ```bash
-docker run -it --rm  --name hlds -p27015:27015 -p27015:27015/udp hlds +map crossfire +maxplayers 16 +password 1 +vs_password "password"
+docker run -it --rm  --name hl-server -p27015:27015 -p27015:27015/udp hl-server +map crossfire +maxplayers 16 +password 1 +vs_password "password"
 ```
 
 > **Note:** Any [server config command](http://sr-team.clan.su/K_stat/hlcommandsfull.html)
   can be passed by using `+` after the docker command options.
+
+## Docker Hub Image
+
+The latest image of this repo is available as pushing to main builds and publish the image to docker hub
+[josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server)
+
+```bash
+# To quickly run this image
+docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp jjsalinas/hl-server +map crossfire +maxplayers 12
+```
+
 
 ## What is included
 
