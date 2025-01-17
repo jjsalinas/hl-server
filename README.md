@@ -1,30 +1,33 @@
-[![GitHub Actions Docker Image CI](https://github.com/artkirienko/hlds-docker-dproto/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/artkirienko/hlds-docker-dproto/actions)
-[![HitCount](http://hits.dwyl.com/artkirienko/hlds-docker-dproto.svg)](http://hits.dwyl.com/artkirienko/hlds-docker-dproto)
+[![GitHub Actions Docker Image CI](https://github.com/jjsalinas/hlds-server/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/jjsalians/hl-server/actions)
 
 ![banner](banner.png)
 
-# HLDS Docker dproto(47/48 Steam+noSteam)
+# HLDS Docker dproto(47/48 Steam+noSteam) - Crossfire 24/7
 
 ## Half-Life Dedicated Server as a Docker image
 
 Probably the fastest and easiest way to set up an old-school Half-Life
-Deathmatch Dedicated Server (HLDS). Both Steam and noSteam, old and new
-half-life clients can connect and play together! You don't need to know
-anything about Linux or HLDS to start a server. You just need Docker and
+Deathmatch Dedicated Server (HLDS). <br>
+Both Steam and noSteam, old and new half-life clients can connect and play together!<br>
+You don't need to know anything about Linux or HLDS to start a server. You just need Docker and
 this image.
 
 ## Quick Start
 
-Start a new server by running:
+Build the image `hlds`:
 
 ```bash
-docker run -it --rm -d -p27015:27015 -p27015:27015/udp artkirienko/hlds
+docker build -t hlds .
 ```
 
-Change the player slot size, map or `rcon_password` by running:
-
+Run your image 
+```bash
+docker run -it --rm -d --name hlds -p27015:27015 -p27015:27015/udp 
 ```
-docker run -it --rm -d --name hlds -p27015:27015 -p27015:27015/udp artkirienko/hlds +map crossfire +maxplayers 12 +rcon_password SECRET_PASSWORD
+
+You can add extra parameters when starting the image
+```bash
+docker run -it --rm  --name hlds -p27015:27015 -p27015:27015/udp hlds +map crossfire +maxplayers 16 +password 1 +vs_password "password"
 ```
 
 > **Note:** Any [server config command](http://sr-team.clan.su/K_stat/hlcommandsfull.html)
@@ -48,27 +51,14 @@ docker run -it --rm -d --name hlds -p27015:27015 -p27015:27015/udp artkirienko/h
 * **dproto** version `0.9.582`. This is the last version of **dproto**,
   the project is abandoned.
 
-* [jk_botti](https://github.com/Bots-United/jk_botti) version `1.43`
-
 * Patched list of master servers (official and unofficial master servers
   included), so your game server appear in game server browser of all the clients
 
 * Minimal config present, such as `mp_timelimit` and mapcycle
 
-## Default mapcycle
-
+## Default mapcycle - crossfire 24/7
 * crossfire
-* bounce
-* datacore
-* frenzy
-* gasworks
-* lambda_bunker
-* rapidcore
-* snark_pit
-* stalkyard
-* subtransit
-* undertow
-* boot_camp
+
 
 ## Advanced
 
@@ -77,5 +67,5 @@ to `valve/config/server.cfg` of this project and mount the directory as volume
 to `/opt/steam/hlds/valve/config` by running:
 
 ```bash
-docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config artkirienko/hlds
+docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config hlds
 ```
