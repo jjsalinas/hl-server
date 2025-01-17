@@ -18,6 +18,18 @@ This project is a fork of: [artkirienko/hlds-docker-dproto](https://github.com/a
 
 ## Quick Start
 
+#### Docker Hub Image
+
+The latest image of this repo is available in docker hub. As pushing to main builds and publish the new image:
+[josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server)
+
+```bash
+# To quickly run this image
+docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp jjsalinas/hl-server +map crossfire +maxplayers 12
+```
+
+#### Locally
+
 Build the image `hl-server`:
 
 ```bash
@@ -37,16 +49,10 @@ docker run -it --rm  --name hl-server -p27015:27015 -p27015:27015/udp hl-server 
 > **Note:** Any [server config command](http://sr-team.clan.su/K_stat/hlcommandsfull.html)
   can be passed by using `+` after the docker command options.
 
-## Docker Hub Image
-
-The latest image of this repo is available as pushing to main builds and publish the image to docker hub
-[josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server)
-
-```bash
-# To quickly run this image
-docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp jjsalinas/hl-server +map crossfire +maxplayers 12
-```
-
+  #### Customization
+  
+  Adjust things as you like in `default.cfg` file to set them to your liking.
+  Like `hostname` to set your server name, or `sv_password` to set a password.
 
 ## What is included
 
@@ -82,5 +88,5 @@ to `valve/config/server.cfg` of this project and mount the directory as volume
 to `/opt/steam/hlds/valve/config` by running:
 
 ```bash
-docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config hlds
+docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config hl-server
 ```
