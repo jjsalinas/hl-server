@@ -1,5 +1,5 @@
-# Custom half life server - Steam & No Steam classic 
-# pre 2024 anniversary patches edition
+# Custom Half-Life server - Steam & No Steam classic
+# Pre-2024 anniversary patches edition
 
 FROM debian:buster-slim
 
@@ -13,7 +13,7 @@ ARG amxmod_url="http://www.amxmodx.org/release/amxmodx-$amxmod_version-base-linu
 
 RUN groupadd -r steam && useradd -r -g steam -m -d /opt/steam steam
 
-RUN apt-get -y update && apt-get install -y  ca-certificates curl lib32gcc1 unzip xz-utils zip
+RUN apt-get -y update && apt-get install -y  ca-certificates curl lib32gcc1 unzip xz-utils zip gettext-base
 
 USER steam
 WORKDIR /opt/steam
@@ -62,18 +62,21 @@ RUN echo 'bind_key.amxx            ; binds keys for voting' >> /opt/steam/hlds/v
 
 WORKDIR /opt/steam/hlds
 
-# Copy default config
-COPY valve valve
+USER root
+# Copy default config template and entrypoint
+COPY valve/default.cfg.template /opt/steam/hlds/valve/default.cfg.template
+COPY entrypoint.sh /opt/steam/hlds/entrypoint.sh
+RUN chmod +x hlds_run hlds_linux entrypoint.sh
 
-RUN chmod +x hlds_run hlds_linux
+USER steam
 
 RUN echo 70 > steam_appid.txt
 
 EXPOSE 27015
 EXPOSE 27015/udp
 
-# Start server
-ENTRYPOINT ["./hlds_run", "-timeout 3", "-pingboost 1"]
+# Set the entrypoint script
+ENTRYPOINT ["./entrypoint.sh"]
 
 # Default start parameters
 CMD ["+map crossfire", "+rcon_password 12345678"]

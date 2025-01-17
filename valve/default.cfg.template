@@ -2,7 +2,7 @@
 mapchangecfgfile server.cfg
 motdfile motd.txt
 
-hostname "Half Life SERVERNAME"
+hostname "${HOSTNAME}"
 
 maxplayers 12
 mp_autocrosshair "0"

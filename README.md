@@ -20,12 +20,11 @@ This project is a fork of: [artkirienko/hlds-docker-dproto](https://github.com/a
 
 #### Docker Hub Image
 
-The latest image of this repo is available in docker hub. As pushing to main builds and publish the new image:
-[josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server)
-
+The latest image of this repo is available in docker hub [josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server) 🐋
+ 
 ```bash
-# To quickly run this image
-docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp jjsalinas/hl-server +map crossfire +maxplayers 12
+# To quickly run the image
+docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp josejsalinas/hl-server +map crossfire +maxplayers 12
 ```
 
 #### Locally
