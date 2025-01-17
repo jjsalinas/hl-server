@@ -31,7 +31,7 @@ docker run -it --rm  --name hlds -p27015:27015 -p27015:27015/udp hlds +map cross
 ```
 
 > **Note:** Any [server config command](http://sr-team.clan.su/K_stat/hlcommandsfull.html)
-  can be passed by using `+`. But it has to follow after the image name `artkirienko/hlds`.
+  can be passed by using `+` after the docker command options.
 
 ## What is included
 
