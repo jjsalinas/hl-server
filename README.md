@@ -1,4 +1,4 @@
-[![GitHub Actions Docker Image CI](https://github.com/jjsalinas/hlds-server/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/jjsalians/hl-server/actions)
+[![GitHub Actions Docker Image CI](https://github.com/jjsalinas/hlds-server/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/jjsalinas/hl-server/actions)
 
 ![banner](banner.png)
 
