@@ -28,7 +28,7 @@ This project is a fork of: [artkirienko/hlds-docker-dproto](https://github.com/a
 #### Docker Hub Image
 
 The latest image of this repo is available in docker hub [josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server) 🐋
- 
+
 ```bash
 # To quickly run the image
 docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp josejsalinas/hl-server +map crossfire +maxplayers 12
@@ -42,21 +42,21 @@ Build the image `hl-server`:
 docker build -t hl-server .
 ```
 
-Run your image 
+Run your image
 ```bash
-docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp 
+docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp
 ```
 
 You can add extra parameters when starting the image
 ```bash
-docker run -it --rm  --name hl-server -p27015:27015 -p27015:27015/udp hl-server +map crossfire +maxplayers 16 +password 1 +vs_password "password"
+docker run -it --rm  --name hl-server -p27015:27015 -p27015:27015/udp hl-server +map crossfire +maxplayers 16 +password 1 +sv_password "password"
 ```
 
 > **Note:** Any [server config command](http://sr-team.clan.su/K_stat/hlcommandsfull.html)
   can be passed by using `+` after the docker command options.
 
   #### Customization
-  
+
   Adjust things as you like in `default.cfg` file to set them to your liking.
   Like `hostname` to set your server name, or `sv_password` to set a password.
 
