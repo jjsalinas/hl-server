@@ -1,0 +1,21 @@
+services:
+  halflife:
+    build: .
+    image: hl-server:latest
+    container_name: halflife-server
+    restart: unless-stopped
+    ports:
+      - "27015:27015/tcp"
+      - "27015:27015/udp"
+    environment:
+      - SERVER_NAME=${SERVER_NAME:-Half-Life Crossfire Server}
+      - MAX_PLAYERS=${MAX_PLAYERS:-16}
+      - SERVER_PASSWORD=${SERVER_PASSWORD:-}
+      - RCON_PASSWORD=${RCON_PASSWORD:-changeme}
+      - WELCOME_MESSAGE=${WELCOME_MESSAGE:-Welcome to Crossfire! Fight until the last player stands!}
+      - STEAM_0AUTH=1
+    # Uncomment to persist server data (logs, stats, etc)
+    # volumes:
+    #   - ./server_data:/hlds/valve
+    stdin_open: true
+    tty: true

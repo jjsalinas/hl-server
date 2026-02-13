@@ -1,6 +1,0 @@
-Welcome to Half-Life HLDS Docker dproto(47/48) - Crossfire 24/7
-
-
-This server uses Docker.
-For more information visit
-https://github.com/jjsalinas/hl-server

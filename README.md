@@ -8,92 +8,153 @@
 
 ![banner](banner.png)
 
-
-# HLDS Docker dproto(47/48 Steam+noSteam) - Crossfire 24/7
+# HLDS Docker - Crossfire 24/7
 
 ## Half-Life Dedicated Server as a Docker image
 
 Probably the fastest and easiest way to set up an old-school Half-Life
-Deathmatch Dedicated Server (HLDS). <br>
-Both Steam and noSteam, old and new half-life clients can connect and play together!<br>
-You don't need to know anything about Linux or HLDS to start a server. You just need Docker and
-this image.
+Deathmatch Dedicated Server (HLDS) running Crossfire map 24/7 with 15-minute rounds.
 
-## Repository
+You don't need to know anything about Linux or HLDS to start a server. You just need Docker and this image.
 
-This project is a fork of: [artkirienko/hlds-docker-dproto](https://github.com/artkirienko/hlds-docker-dproto)
+## Features
+
+✅ **Included:**
+- 15-minute rounds with automatic map cycling
+- Crossfire map only
+- Customizable server settings via `.env`
+- Auto-restart on crash
+- **MetaMod + AMX Mod X 1.9 installed**
+- Built-in `timeleft` command (type in chat to see remaining time)
+- Admin commands ready
 
 ## Quick Start
 
-#### Docker Hub Image
+#### Docker Hub Image (Recommended)
 
-The latest image of this repo is available in docker hub [josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server) 🐋
-
-```bash
-# To quickly run the image
-docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp josejsalinas/hl-server +map crossfire +maxplayers 12
-```
-
-#### Locally
-
-Build the image `hl-server`:
+The latest image of this repo is available in docker hub [josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server)
 
 ```bash
-docker build -t hl-server .
+docker run -d --name hl-server \
+  -p 27015:27015 \
+  -p 27015:27015/udp \
+  -e SERVER_NAME="My Crossfire Server" \
+  -e MAX_PLAYERS=16 \
+  -e RCON_PASSWORD=changeme \
+  josejsalinas/hl-server:latest
 ```
 
-Run your image
+Or use docker compose with the hub image by creating a `docker-compose.yml`:
+
+```yaml
+services:
+  halflife:
+    image: hl-server:latest
+    container_name: halflife-server
+    restart: unless-stopped
+    ports:
+      - "27015:27015/tcp"
+      - "27015:27015/udp"
+    environment:
+      - SERVER_NAME=${SERVER_NAME:-Half-Life Crossfire Server}
+      - MAX_PLAYERS=${MAX_PLAYERS:-16}
+      - SERVER_PASSWORD=${SERVER_PASSWORD:-}
+      - RCON_PASSWORD=${RCON_PASSWORD:-changeme}
+      - WELCOME_MESSAGE=${WELCOME_MESSAGE:-Welcome to Crossfire!}
+```
+
+#### Build Locally
+
+Build the image yourself:
+
 ```bash
-docker run -it --rm -d --name hl-server -p27015:27015 -p27015:27015/udp
+docker compose build
 ```
 
-You can add extra parameters when starting the image
+Run your server:
 ```bash
-docker run -it --rm  --name hl-server -p27015:27015 -p27015:27015/udp hl-server +map crossfire +maxplayers 16 +password 1 +sv_password "password"
+docker compose up -d
 ```
 
-> **Note:** Any [server config command](http://sr-team.clan.su/K_stat/hlcommandsfull.html)
-  can be passed by using `+` after the docker command options.
+That's it! Your server is now running on port 27015.
 
-  #### Customization
+## Configuration
 
-  Adjust things as you like in `default.cfg` file to set them to your liking.
-  Like `hostname` to set your server name, or `sv_password` to set a password.
+Edit the `.env` file to customize your server:
+
+```bash
+cp .env.example .env
+nano .env
+```
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `SERVER_NAME` | Server name shown in server browser | Half-Life Crossfire Server |
+| `MAX_PLAYERS` | Maximum number of players | 16 |
+| `SERVER_PASSWORD` | Password to join server (leave empty for public) | (empty) |
+| `RCON_PASSWORD` | RCON admin password | changeme |
+| `WELCOME_MESSAGE` | Message shown when players join | Welcome to Crossfire! Fight until the last player stands! |
+
+### Example Configuration
+
+```env
+SERVER_NAME=My Awesome Crossfire Server
+MAX_PLAYERS=20
+SERVER_PASSWORD=secret123
+RCON_PASSWORD=adminpass456
+WELCOME_MESSAGE=Welcome! 15-minute Crossfire rounds!
+```
 
 ## What is included
 
-* [HLDS Build](https://github.com/DevilBoy-eXe/hlds) `7882`. This is the last
-  known version that is compatible with last version of **dproto** that's `0.9.582`
+* [HLDS Build](https://github.com/EXORTEM/hlds) `7882`. Stable version compatible with MetaMod and AMX Mod X.
 
   ```
-  Protocol version 47/48
+  Protocol version 48
   Exe version 1.1.2.2/Stdio (valve)
   Exe build: 17:23:32 May 24 2018 (7882)
   ```
 
-* [Metamod-p](https://github.com/Bots-United/metamod-p) version `1.21p38`
+* [Metamod-P](https://github.com/Bots-United/metamod-p) version `1.21p38`
 
-* [AMX Mod X](https://github.com/alliedmodders/amxmodx) version `1.8.2`
+* [AMX Mod X](https://www.amxmodx.org/) version `1.9` (latest stable)
 
-* **dproto** version `0.9.582`. This is the last version of **dproto**,
-  the project is abandoned.
+* Minimal config with 15-minute rounds and Crossfire map only
 
-* Patched list of master servers (official and unofficial master servers
-  included), so your game server appear in game server browser of all the clients
-
-* Minimal config present, such as `mp_timelimit` and mapcycle
+* Customizable via environment variables
 
 ## Default mapcycle - crossfire 24/7
-* crossfire
-
+* crossfireS
 
 ## Advanced
 
-In order to use a custom server config file, add your settings
-to `valve/config/server.cfg` of this project and mount the directory as volume
-to `/opt/steam/hlds/valve/config` by running:
+### Custom Server Configuration
 
+In order to use additional custom settings, you can modify `server.cfg` before building, or:
+
+1. Enter the running container:
 ```bash
-# Using docker hub image
-docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config josejsalinas/hl-server
+docker exec -it halflife-server bash
 ```
+
+2. Edit the config:
+```bash
+nano /opt/steam/hlds/valve/server.cfg
+```
+
+3. Restart the server:
+```bash
+docker compose restart
+```
+
+## Notes
+
+- The server uses HLDS build 7882 for better compatibility with AMX Mod X
+- Round duration is set to 15 minutes
+- Only the Crossfire map is in rotation
+- Server automatically restarts on crash
+
+## License
+
+This configuration is provided as-is for running Half-Life dedicated servers.
+Half-Life is a trademark of Valve Corporation.
