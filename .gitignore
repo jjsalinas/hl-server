@@ -1,2 +1,36 @@
-# MacOS filesystem
+# Environment variables with sensitive data
+.env
+
+# Docker volumes and data
+server_data/
+
+# Docker build cache
+.dockerignore
+
+# Logs
+*.log
+logs/
+
+# Compiled AMX plugins
+*.amxx
+
+# OS files
 .DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Temporary files
+tmp/
+temp/
