@@ -49,7 +49,7 @@ Or use docker compose with the hub image by creating a `docker-compose.yml`:
 ```yaml
 services:
   halflife:
-    image: josejsalinas/hl-server:latest
+    image: hl-server:latest
     container_name: halflife-server
     restart: unless-stopped
     ports:
