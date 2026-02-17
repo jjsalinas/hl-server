@@ -124,7 +124,7 @@ WELCOME_MESSAGE=Welcome! 15-minute Crossfire rounds!
 * Customizable via environment variables
 
 ## Default mapcycle - crossfire 24/7
-* crossfireS
+* crossfire
 
 ## Advanced
 
@@ -146,13 +146,6 @@ nano /opt/steam/hlds/valve/server.cfg
 ```bash
 docker compose restart
 ```
-
-## Notes
-
-- The server uses HLDS build 7882 for better compatibility with AMX Mod X
-- Round duration is set to 15 minutes
-- Only the Crossfire map is in rotation
-- Server automatically restarts on crash
 
 ## License
 
