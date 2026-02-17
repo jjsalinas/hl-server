@@ -29,5 +29,5 @@ cd /opt/steam/hlds
     +maxplayers ${MAX_PLAYERS:-16} \
     +map crossfire \
     -port 27015 \
-    +sv_lan 1 \
+    +sv_lan 0 \
     +exec server.cfg
