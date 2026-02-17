@@ -35,7 +35,7 @@ You don't need to know anything about Linux or HLDS to start a server. You just 
 The latest image of this repo is available in docker hub [josejsalinas/hl-server](https://hub.docker.com/r/josejsalinas/hl-server)
 
 ```bash
-docker run -d --name hl-server \
+docker run -d --name halflife-server \
   -p 27015:27015 \
   -p 27015:27015/udp \
   -e SERVER_NAME="My Crossfire Server" \
@@ -49,7 +49,7 @@ Or use docker compose with the hub image by creating a `docker-compose.yml`:
 ```yaml
 services:
   halflife:
-    image: hl-server:latest
+    image: josejsalinas/hl-server:latest
     container_name: halflife-server
     restart: unless-stopped
     ports:

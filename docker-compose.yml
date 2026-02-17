@@ -1,7 +1,7 @@
 services:
   halflife:
     build: .
-    image: hl-server:latest
+    image: josejsalinas/hl-server:latest
     container_name: halflife-server
     restart: unless-stopped
     ports:
