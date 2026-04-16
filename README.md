@@ -1,8 +1,8 @@
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
-![Steam](https://img.shields.io/badge/steam-%23000000.svg?style=for-the-badge&logo=steam&logoColor=white)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/josejsalinas/hl-server)
+<img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white" />
+<img src="https://img.shields.io/badge/steam-%23000000.svg?style=for-the-badge&logo=steam&logoColor=white" />
 
-[![GitHub Actions Docker Image CI](https://github.com/jjsalinas/hl-server/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/jjsalinas/hl-server/actions)
+[![Build and Publish Docker Image](https://github.com/jjsalinas/hl-server/actions/workflows/docker-publish.yml/badge.svg?branch=main)](https://github.com/jjsalinas/hl-server/actions/workflows/docker-publish.yml)
 [![Docker](https://img.shields.io/badge/DockerHub-latest-green)](https://hub.docker.com/r/josejsalinas/hl-server)
 
 
@@ -15,13 +15,13 @@
 Probably the fastest and easiest way to set up an old-school Half-Life
 Deathmatch Dedicated Server (HLDS) running Crossfire map 24/7 with 15-minute rounds.
 
-You don't need to know anything about Linux or HLDS to start a server. You just need Docker and this image.
+You don't need to know anything about Linux or HLDS to start a server. <br/>
+You just need Docker and this image: https://hub.docker.com/r/josejsalinas/hl-server
 
 ## Features
 
-✅ **Included:**
 - 15-minute rounds with automatic map cycling
-- Crossfire map only
+- **Crossfire map only**
 - Customizable server settings via `.env`
 - Auto-restart on crash
 - **MetaMod + AMX Mod X 1.9 installed**
